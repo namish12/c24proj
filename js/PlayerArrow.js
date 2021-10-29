@@ -16,7 +16,7 @@ class PlayerArrow {
   
   //create a shoot function
  shoot(archerAngle) {
-      archerAncgle += 90 
+      archerAncgle += 90; 
       var velocity = p5.Vector.fromAngle(archerAngle);
       velocity.mult(20);
       Matter.Body.setStatic(this.body, false);
