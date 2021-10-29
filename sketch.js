@@ -59,7 +59,7 @@ function draw() {
 }
 
 function keyPressed(){
-  if (keyCode === RIGHT_ARROW){
+  if (keyCode === 32){
     var arrow = new PlayerArrow(playerArcher.x, playerArcher.y);
      arrow.trajectory = [];
     Matter.Body.setAngle(arrow.body, playerArcher.angle);
@@ -74,7 +74,7 @@ function showArrows(arrow){
 }
 
 function keyReleased() {
-  if (keyCode === RIGHT_ARROW) {
+  if (keyCode === 32) {
     playerArrows[playerArrows.length-1].shoot();
   }
 }
