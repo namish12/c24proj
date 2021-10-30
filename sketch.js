@@ -50,32 +50,36 @@ function draw() {
 
   playerArcher.display();
 
+  for (var i = 0; i < playerArrows.length; i++) {
+    if (playerArrows[i] !== undefined) {
+      playerArrows[i].display();
+    }
+  }
+
   // Title
   fill("#FFFF");
   textAlign("center");
   textSize(40);
   text("EPIC ARCHERY", width / 2, 100);
-
 }
 
-function keyPressed(){
-  if (keyCode === 32){
-    var arrow = new PlayerArrow(playerArcher.x, playerArcher.y);
-     arrow.trajectory = [];
-    Matter.Body.setAngle(arrow.body, playerArcher.angle);
+function keyPressed() {
+  if (keyCode === 32) {
+    var posX = playerArcher.body.position.x;
+    var posY = playerArcher.body.position.y;
+    var angle = playerArcher.body.angle;
+    var arrow = new PlayerArrow(posX, posY, 100, 10, angle);
+
+    Matter.Body.setAngle(arrow.body, angle);
     playerArrows.push(arrow);
-  }
-}
-
-function showArrows(arrow){
-  if(arrow){
-    arrow.display();
   }
 }
 
 function keyReleased() {
   if (keyCode === 32) {
-    playerArrows[playerArrows.length-1].shoot();
+    if (playerArrows.length) {
+      var angle = playerArcher.body.angle;
+      playerArrows[playerArrows.length - 1].shoot(angle);
+    }
   }
 }
-
